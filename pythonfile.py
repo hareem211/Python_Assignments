@@ -1,20 +1,19 @@
 import csv
 
-def read_weather_data(weather_data):
+def read_weather_data(file_path):
     weather_data = []
-    with open( r"C:\Users\ue\Desktop\weatherAUS\weatherAUS.csv") as csvfile:
+    with open( r"weatherAUS.csv") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             weather_data.append(row)
         return weather_data
-def calculate_avg_temperatures(weather_data):
+def calculate_avg_temperatures(file-path):
     avg_min_temp = {}
     avg_max_temp = {}
-    # weather_data['MinTemperature'] = int(0)
-    # weather_data['MaxTemperature'] = int(0)
     for entry in weather_data:
      date = entry['Date']
      month = date.split('-')[1]
+     month = input("enter month to check temp")
      if entry['MinTemp'] == 'NA':
          min_temp == 0.0
      else:    
@@ -35,7 +34,7 @@ def calculate_avg_temperatures(weather_data):
         avg_min_temp[month] = sum(avg_min_temp[month]) / len(avg_min_temp[month])
         avg_max_temp[month] = sum(avg_max_temp[month]) / len(avg_max_temp[month])
         return avg_min_temp, avg_max_temp
-def find_highest_rainfall_each_year(weather_data):
+def find_highest_rainfall_each_year(file_path):
     highest_rainfall = {}
     for entry in weather_data:
         date = entry['Date']
@@ -52,7 +51,7 @@ def find_highest_rainfall_each_year(weather_data):
                 highest_rainfall[year] = rainfall
 
     return highest_rainfall
-def find_min_pressure_at_9am(weather_data):
+def find_min_pressure_at_9am(file_path):
     min_pressure_9am = float('inf')
     for entry in weather_data:
         if entry['Pressure9am'] == 'NA':
@@ -63,8 +62,8 @@ def find_min_pressure_at_9am(weather_data):
             min_pressure_9am = pressure_9am
 
     return min_pressure_9am
-file_path = r"C:\Users\ue\Desktop\weatherAUS\weatherAUS.csv"
-weather_data = read_weather_data(file_path)
+path = input("input_file_path")
+weather_data = read_weather_data(path)
 
 avg_min_temp, avg_max_temp = calculate_avg_temperatures(weather_data)
 highest_rainfall_each_year = find_highest_rainfall_each_year(weather_data)
